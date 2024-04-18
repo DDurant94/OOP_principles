@@ -55,11 +55,13 @@ food_category.display_category_summary()
 
 from Budget import BudgetCategory
 
- 
-print("Welcome to the Budge Application")
-name_input = input("Enter the name for the Budget: ").title()
-budget_input = int(input("Enter the total funds for the budget: "))
-shopping = BudgetCategory(name_input,budget_input)
+try:
+  print("Welcome to the Budge Application")
+  name_input = input("Enter the name for the Budget: ").title()
+  budget_input = int(input("Enter the total funds for the budget: "))
+  shopping = BudgetCategory(name_input,budget_input)
+except ValueError:
+  print("Enter in a number")
 while True:
   print("Main Menu:\n1. Add Expense\n2. View Total\n3. Exit")
   menu_input = input("Choose a Menu option: ")

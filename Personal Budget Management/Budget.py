@@ -1,5 +1,5 @@
-# This module ta
-
+# This module takes in your budget name and sets a value that you want to use. Not letting you go below 0 but subtracting down to 0 from the amount
+# that you had stated allowing you to add expenses to that value till 0 
 class BudgetCategory:
   def __init__(self,name,allocated_budget):
     self.__name = name
@@ -32,4 +32,4 @@ class BudgetCategory:
 
   def display_category_summary(self):
     print(f"Category: {self.__name}")
-    print(f"Remaining Budget: ${self._allocated_budget:.2f}") 
+    print(f"Remaining Budget: ${self.get_allocation():.2f}") 

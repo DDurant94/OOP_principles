@@ -55,11 +55,66 @@ my_book = Book("123", "Python Essentials", 29.99, "J. Doe")
 my_book.display_info()
 '''
 
-from Catalog import Product as p
+
+from Catalog import Product as p, Clothing as c, Electronic as e, Book as b
+
+ 
+def add_product(catalog):
+    try:
+        product_type = input("Enter the Category of product [Clothing,Electronics,Books,General]: ").lower()
+        product_id = input("Enter the product ID number: ")
+        product_name = input("Enter the name of product: ")
+        product_price = float(input("Enter the price of the product: "))
+        if product_type == "clothing":
+            size = input("Enter the size [Small,Medium,Large]: ").capitalize()
+            catalog["Clothing"][product_id] = c(product_id,product_name,product_price,size)
+        elif product_type == "electronics":
+            spec = input("Enter the specs of the product: ").capitalize()
+            catalog["Electronics"][product_id] = e(product_id,product_name,product_price,spec)
+        elif product_type == "books":
+            author = input("Enter the name of the author: ").title()
+            catalog["Books"][product_id] = b(product_id,product_name,product_price,author)
+        elif product_type == "general":
+            catalog["General"][product_id] = p(product_id,product_name,product_price)
+        else:
+            print("Invalid Input")
+    except ValueError:
+        print("Enter in a price") 
+    
+
+def view_products(catalog):
+    product_type = input("Enter the Category of product [Clothing,Electronics,Books,General]: ").lower()
+    product_id = input("Enter the product ID number: ")
+    if product_type == "clothing":
+        c.display_info(catalog["Clothing"][product_id])
+    elif product_type == "electronics":
+        e.display_info(catalog["Electronics"][product_id])
+    elif product_type == "books":
+        b.display_info(catalog["Books"][product_id])
+    elif product_type == "general":
+        p.display_info(catalog["General"][product_id])
+    else:
+        print("Invalid Category or Product ID Number") 
+
+def main():
+    catalog = {"General":{},
+                "Books":{},
+                "Electronics":{},
+                "Clothing":{}}
+
+    print("Welcome to the Product Catalog")
+    while True:
+        print("Main Menu:\n1. Add Products \n2. View Products \n3. Exit")
+        menu_choice = input("Choose one of our menu options: ")
+        if menu_choice == "1":
+            add_product(catalog)
+        elif menu_choice == "2":
+            view_products(catalog)
+        elif menu_choice == "3":
+            print("Thank you for using Product Catalog")
+            break
+        else:
+            print("Invalid input")
 
 
-def add_product():
-  product_id = input("Enter the product ID number: ")
-  product_name = input("Enter the name of product: ")
-  product_price = float(input("Enter the price of the product: "))
-  product = p(product_id,product_name,product_price)
+main()

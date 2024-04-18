@@ -25,7 +25,8 @@ its purpose and functionality can be very helpful. By adhering to a modular appr
 solutions for the assignments will not only be more effective and efficient but also align with industry standards. 
 This practice will prepare you for larger-scale projects in your programming career.
 '''
-
+# Add a general product with minimal values needed ID,Name and price. Also being able to get those locked/private attributes to be able to see
+# Them without an error happening.
 
 
 class Product:
@@ -33,7 +34,6 @@ class Product:
     self.__product_id = product_id
     self.__name = name
     self.__price = price
-    products = {}
 
   def get_product_id(self):
     return self.__product_id
@@ -43,36 +43,26 @@ class Product:
   
   def get_price(self):
     return self.__price
-  
-
+  # Do not have a set new price but could go and do that at another time. I wanted  to practice working with setters
   def set_price(self,new_price):
     self.__price = new_price
 
-
   def display_info(self):
-    pass
+      print(f"ID Number-{self.get_product_id()}: {self.get_name()} cost ${self.get_price()}")
 
-  def add_product(self):
-    product_id = input("Enter the product ID number: ")
-    product_name = input("Enter the name of product: ")
-    product_price = float(input("Enter the price of the product: "))
-
+# This is building on the parent for a specific type (category books) of it.
 class Book(Product):
   def __init__(self, product_id, name, price, author):
     super().__init__(product_id, name, price)
     self.__author = author
-
-
+  
   def get_author(self):
     return self.__author
   
-
   def display_info(self):
-    pass
+    print(f"ID Number-{self.get_product_id()}: {self.get_name()} cost ${self.get_price()}\nAuthor:\n{self.__author}")
 
-
-
-
+# This is building on the parent for a specific type (category electronics) of it.
 class Electronic(Product):
   def __init__(self, product_id, name, price, specs):
     super().__init__(product_id, name, price)
@@ -82,19 +72,16 @@ class Electronic(Product):
     return self.__specs
   
   def display_info(self):
-    pass
+    print(f"ID Number-{self.get_product_id()}: {self.get_name()} cost ${self.get_price()}\nSpecs:\n{self.__specs}")
 
-
-
+# This is building on the parent for a specific type (category clothing) of it.
 class Clothing(Product):
-  def __init__(self, product_id, name, price, type):
+  def __init__(self, product_id, name, price, size):
     super().__init__(product_id, name, price)
-    self.__type = type
-
+    self.__size = size
 
   def get_type(self):
-    return self.__type
-
+    return self.__size
 
   def display_info(self):
-    pass
+    print(f"ID Number-{self.get_product_id()}: {self.get_name()} cost ${self.get_price()}\nSize: {self.__size}")
